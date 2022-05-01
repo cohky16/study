@@ -1,0 +1,5 @@
+services:
+  service-a:
+    path: service-a
+  service-b:
+    path: service-b
