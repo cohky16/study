@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - 4566:4566
+      - 8000:8080
+    volumes:
+      - ./docker/localstack:/docker-entrypoint-initaws.d
+      - /var/run/docker.sock:/var/run/docker.sock
+      - 'localstack-data:/tmp/localstack'
+    environment:
+      - SERVICES=elasticsearch
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=ap-northeast-1
+      - DATA_DIR=/tmp/localstack/data
+volumes:
+  localstack-data:
+    driver: 'local'
